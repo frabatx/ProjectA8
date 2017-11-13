@@ -15,32 +15,17 @@ public class Node implements Comparable<Node>  {
 	private int value;
 	private Random random = new Random();
 
-	/**
-	 * Represents the node within the Tree
-	 * @param rootState
-	 */
-	public Node(State rootState) {
-		this.parent = null;
-		this.state = rootState;
-		this.action = null;
-		this.depth = 0;
-		this.cost = 0;
-		this.value = 0;
 
+	public Node(Node parent, State state, int depth, int cost, int value) {
+		super();
+		this.parent = parent;
+		this.state = state;
+		this.cost = cost;
+		this.depth = depth;
+		this.value = value;
 	}
 
-/*	A COSA SERVE QUESTO NODO??
- * 
- * public Node(Node parentNode, Action nextAction) throws CloneNotSupportedException {
-		this.state = State.newState(parentNode.getState(), nextAction);
-		this.action = nextAction;
-		this.parent = parentNode;
-		this.cost = parentNode.getCost() + 1;
-		this.depth = parentNode.getDepth() + 1;
-		this.value = random.nextInt(100) + 1;
-	}*/
-
-	public Node(Node parent, State state, int cost, Action action, int depth) {
+	public Node(Node parent, State state,int depth, int cost, Action action) {
 		super();
 		this.parent = parent;
 		this.state = state;
@@ -107,9 +92,10 @@ public class Node implements Comparable<Node>  {
 	public Node clone() throws CloneNotSupportedException {
 		return new Node(this.parent,
 				this.state.clone(),
+				this.depth,
 				this.cost, 
-				this.action, 
-				this.depth);
+				this.value
+				);
 	}
 
 	@Override
