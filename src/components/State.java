@@ -243,6 +243,8 @@ public class State {
 		}
 		out.close();
 	}
+	
+	
 
 	/**
 	 * Generate action by a tractor. Started in a position P tractor can move sand
@@ -290,6 +292,8 @@ public class State {
 		}
 		return actions;
 	}
+	
+	
 
 	/**
 	 * Trasform a string in array. Used in generateAction to trasform a string by
