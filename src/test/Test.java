@@ -14,7 +14,7 @@ public class Test {
 
 	public static void main(String[] args) throws CloneNotSupportedException {
 		//Prova           
-		//Francesco
+		//Francesco 
 		State stato = new State("Test.0.txt");
 		
 		try {
