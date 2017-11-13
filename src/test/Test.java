@@ -13,8 +13,9 @@ import movements.Action;
 public class Test {
 
 	public static void main(String[] args) throws CloneNotSupportedException {
-		//Prova           
+		//Prova
 		//Francesco 
+		//daniele
 		State stato = new State("Test.0.txt");
 		
 		try {
