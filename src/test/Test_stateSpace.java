@@ -1,7 +1,7 @@
 package test;
 
 import components.State;
-import tree.SpaceState;
+import problem.SpaceState;
 
 public class Test_stateSpace {
 

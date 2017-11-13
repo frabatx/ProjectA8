@@ -1,14 +1,13 @@
 package tree;
 
-
 import java.util.PriorityQueue;
 
-public class Frontier  {
+public class Frontier{
 
 	private PriorityQueue<Node> frontier;
 
 	/**
-	 * Returns a LinkedList of nodes that make up Tree
+	 * Returns a PriorityQueue of nodes that make up Tree
 	 * 
 	 * @return
 	 */
@@ -35,4 +34,5 @@ public class Frontier  {
 	public boolean isEmpty() {
 		return frontier.isEmpty();
 	}
+
 }

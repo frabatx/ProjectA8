@@ -1,4 +1,4 @@
-package tree;
+package problem;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import movements.Action;
  *
  */
 public class SpaceState {
-
+	
 	public SpaceState() {
 	}
 	
@@ -45,7 +45,7 @@ public class SpaceState {
 	 * @return
 	 * @throws CloneNotSupportedException
 	 */
-	public ArrayList<State> successor(State state) throws CloneNotSupportedException {
+	public static ArrayList<State> successor(State state) throws CloneNotSupportedException {
 		ArrayList<State> successorList = new ArrayList<>();
 		
 		for(Action a: state.generateActions()) {

@@ -25,12 +25,11 @@ public class Node implements Comparable<Node>  {
 		this.value = value;
 	}
 
-	public Node(Node parent, State state,int depth, int cost, Action action) {
+	public Node(Node parent, State state,int depth, int cost) {
 		super();
 		this.parent = parent;
 		this.state = state;
 		this.cost = cost;
-		this.action = action;
 		this.depth = depth;
 		this.value = random.nextInt(100) + 1;
 		
