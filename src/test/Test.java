@@ -12,10 +12,7 @@ import movements.Action;
 
 public class Test {
 
-	public static void main(String[] args) throws CloneNotSupportedException {
-		//Prova
-		//Francesco 
-		//daniele
+	public static void main(String[] args) throws Exception {
 		State stato = new State("Test.0.txt");
 		
 		try {
@@ -27,7 +24,6 @@ public class Test {
 		int i=0;
 		ArrayList<Action> listaAzioni= stato.generateActions();
 		for(Action a:listaAzioni) {
-			//non aggiorna stato
 			State s=stato.newState(stato, a);
 			try {
 				s.printFild("Successore."+i+".txt");
