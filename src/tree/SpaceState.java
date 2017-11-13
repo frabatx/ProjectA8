@@ -14,6 +14,7 @@ public class SpaceState {
 
 	public SpaceState() {
 	}
+	
 	/**
 	 * It is the method that decides when the final result is reached
 	 * 
@@ -53,44 +54,5 @@ public class SpaceState {
 		
 		return successorList;
 	}
-	/**
-	 * Alternative version of successor with treeTuple
-	 * @param state
-	 * @return
-	 * @throws CloneNotSupportedException
-	 */
-	public ArrayList<TreeTuple<Action, State, Integer>> successorT(State state) throws CloneNotSupportedException{
-		ArrayList<TreeTuple<Action, State, Integer>> successorList = new ArrayList<>();
-		for (Action a: state.generateActions()) {
-			TreeTuple<Action, State, Integer> tuple = new TreeTuple<Action, State, Integer>(a, state.newState(state, a), a.getCost());
-			successorList.add(tuple);
-		}
-		return successorList;
-	}
-	
-	
-	protected class TreeTuple<A, S, C> {
-		private A first;
-		private S second;
-		private C third;
 
-		public TreeTuple(A a, S s, C c) {
-			first = a;
-			second = s;
-			third = c;
-		}
-
-		public A getFirst() {
-			return first;
-		}
-
-		public S getSecond() {
-			return second;
-		}
-
-		public C getThird() {
-			return third;
-		}
-
-	}
 }
