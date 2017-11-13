@@ -18,7 +18,7 @@ public class SpaceState {
 	/**
 	 * It is the method that decides when the final result is reached
 	 * 
-	 * @param state
+	 * @param state 
 	 * @return
 	 */
 	public static boolean isGoal(State state)
