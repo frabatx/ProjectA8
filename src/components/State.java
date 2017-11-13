@@ -283,12 +283,12 @@ public class State {
 					}
 					if (isIn == true) { // control
 						actions.add(action);
-						System.out.println(action.toString()); // test to can see all action
+						//System.out.println(action.toString()); // test to can see all action
 					}
 					count++;
 				}
 			}
-			System.out.println();
+			//System.out.println();
 		}
 		return actions;
 	}
