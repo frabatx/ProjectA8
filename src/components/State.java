@@ -160,7 +160,7 @@ public class State {
 	 * @param action
 	 * @throws CloneNotSupportedException
 	 */
-	public void upgradeState(State state, Action action) throws CloneNotSupportedException {
+	private void upgradeState(State state, Action action) throws CloneNotSupportedException {
 
 		for (Position p : action.getSandMovement().keySet()) {
 			int sum = state.getValue(p) + action.getSandMovement().get(p);
@@ -245,7 +245,7 @@ public class State {
 	}
 
 	/**
-	 * Generate action by a tractor. Started in a position P tractor can move sand
+	 * Generate an action by a tractor. Started in a position P tractor can move sand
 	 * and go in a specific area of field. Method generate all possible action by a
 	 * tractor in the field.
 	 * 

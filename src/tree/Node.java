@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import components.State;
 import movements.Action;
@@ -100,12 +101,12 @@ public class Node implements Comparable<Node> {
 	 *            is the type of strategy that decide the type of order in tree
 	 * @return list of nodes
 	 */
-	public static ArrayList<Node> createNodesList(ArrayList<State> stateList, Node parentNode, int max_depth,
+	public static ArrayList<Node> createNodesList(HashMap<State,Action> stateList, Node parentNode, int max_depth,
 			Strategy strategy) {
 
 		ArrayList<Node> nodeList = new ArrayList<>();
 		int depth = parentNode.getDepth() + 1;
-		int cost = parentNode.getAction().getCost(); // have the cost of parent action
+		int cost = 0;
 		int value = 0;
 
 		switch (strategy) {
@@ -121,19 +122,23 @@ public class Node implements Comparable<Node> {
 		case IDS:
 			value = -depth;
 			break;
-		case UCS:
-			value = cost;
+		default:
 			break;
 		}
 
-		for (State s : stateList) {
+		for (State s : stateList.keySet()) {
 			Node son = new Node(parentNode, s, depth, cost, value);
+			son.setAction(stateList.get(s));
+			son.setCost(son.getAction().getCost());
+			
+			if(strategy==Strategy.UCS) {
+				son.setValue(son.getAction().getCost());
+			}
 			nodeList.add(son);
 		}
-
 		return nodeList;
 	}
-
+	
 	public Node clone() throws CloneNotSupportedException {
 		return new Node(this.parent, this.state.clone(), this.depth, this.cost, this.value);
 	}
@@ -142,5 +147,12 @@ public class Node implements Comparable<Node> {
 	public int compareTo(Node n) {
 		return ((Integer) this.value).compareTo((Integer) n.value);
 	}
+
+	@Override
+	public String toString() {
+		return "Node [cost=" + cost + ", depth=" + depth + ", value=" + value + "]";
+	}
+	
+	
 
 }

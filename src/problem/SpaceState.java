@@ -1,6 +1,6 @@
 package problem;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import components.State;
 import movements.Action;
@@ -45,11 +45,11 @@ public class SpaceState {
 	 * @return
 	 * @throws CloneNotSupportedException
 	 */
-	public static ArrayList<State> successor(State state) throws CloneNotSupportedException {
-		ArrayList<State> successorList = new ArrayList<>();
+	public static HashMap<State,Action> successor(State state) throws CloneNotSupportedException {
+		HashMap<State,Action> successorList = new HashMap<>();
 		
 		for(Action a: state.generateActions()) {
-			successorList.add(state.newState(state, a));
+			successorList.put(state.newState(state, a),a);
 		}
 		
 		return successorList;
