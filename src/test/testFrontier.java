@@ -16,7 +16,7 @@ public class testFrontier
 		State initialState = new State("Test.0.txt");
 		Node initialNode = new Node (null, initialState, 0, 0, 0 );
 		
-		//creo una lista di nodi parenti a InitialNode
+		//creo una lista di nodi parenti a InitialNode e gli passo una strategia, in base ad essa ordina il mio albero 
 		
 		ArrayList<Node> nodeList = Node.createNodesList(SpaceState.successor(initialNode.getState()), initialNode, 100, Strategy.UCS);
 		

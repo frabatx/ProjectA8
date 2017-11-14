@@ -103,7 +103,7 @@ public class Node implements Comparable<Node> {
 	 */
 	public static ArrayList<Node> createNodesList(HashMap<State,Action> stateList, Node parentNode, int max_depth,
 			Strategy strategy) {
-
+  
 		ArrayList<Node> nodeList = new ArrayList<>();
 		int depth = parentNode.getDepth() + 1;
 		int cost = 0;
@@ -128,10 +128,10 @@ public class Node implements Comparable<Node> {
 
 		for (State s : stateList.keySet()) {
 			Node son = new Node(parentNode, s, depth, cost, value);
-			son.setAction(stateList.get(s));
-			son.setCost(son.getAction().getCost());
+			son.setAction(stateList.get(s));				//setting action in the node
+			son.setCost(son.getAction().getCost());			//setting cost by action in node
 			
-			if(strategy==Strategy.UCS) {
+			if(strategy==Strategy.UCS) {					//ucs is only strategy that value is egual to cost
 				son.setValue(son.getAction().getCost());
 			}
 			nodeList.add(son);
