@@ -19,7 +19,7 @@ public class State {
 	private int max;
 	private int sizeCol;
 	private int sizeRow;
-	private Tractor tractor; 
+	private Tractor tractor;
 
 	// COSTRUCTOR
 	/**
@@ -243,8 +243,6 @@ public class State {
 		}
 		out.close();
 	}
-	
-	
 
 	/**
 	 * Generate action by a tractor. Started in a position P tractor can move sand
@@ -283,17 +281,15 @@ public class State {
 					}
 					if (isIn == true) { // control
 						actions.add(action);
-						//System.out.println(action.toString()); // test to can see all action
+						// System.out.println(action.toString()); // test to can see all action
 					}
 					count++;
 				}
 			}
-			//System.out.println();
+			// System.out.println();
 		}
 		return actions;
 	}
-	
-	
 
 	/**
 	 * Trasform a string in array. Used in generateAction to trasform a string by
