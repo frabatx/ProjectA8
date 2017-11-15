@@ -1,7 +1,10 @@
 package test;
 
+import java.util.ArrayList;
+
 import components.State;
 import problem.SpaceState;
+import problem.Strategy;
 import tree.Frontier;
 import tree.Node;
 
@@ -13,15 +16,18 @@ public class testFrontier
 		State initialState = new State("Test.0.txt");
 		Node initialNode = new Node (null, initialState, 0, 0, 0 );
 		
-		//creo una lista di nodi parenti a InitialNode
+		//creo una lista di nodi parenti a InitialNode e gli passo una strategia, in base ad essa ordina il mio albero 
 		
-		for(State s: SpaceState.successor(initialState)) {
-			Node parent = new Node(initialNode,s,0,0);
-			frontier.insert(parent);
+		ArrayList<Node> nodeList = Node.createNodesList(SpaceState.successor(initialNode.getState()), initialNode, 100, Strategy.UCS);
+		
+		for (Node node : nodeList) {
+			frontier.insert(node);
+			
 		}
-		
+		int i=0;
 		while(!frontier.isEmpty()) {
-			System.out.println(frontier.removeFirst().getValue());
+			System.out.println(i+frontier.removeFirst().toString());
+			i++;
 		}
 	}
 	

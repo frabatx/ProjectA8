@@ -1,6 +1,7 @@
 package movements;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import components.Position;
 
@@ -8,8 +9,8 @@ public class Action {
 
 	private Position nextPosition;
 	private HashMap<Position, Integer> sandMovement;
-	private int cost=1;
-
+	Random random = new Random();
+	private int cost=random.nextInt(100)+1;
 	/**
 	 * Action is the action of the Tractor on the Field.
 	 * It is represented by the next position of the Tractor and the displacement of the sand on 
