@@ -275,8 +275,11 @@ public class State {
 
 						action.addElement(indexI, sandInPoint[i]); // add action to the possible actions
 
-						if (sandInPoint[i] > (this.getMax() - this.getValue(indexI)))
+						if (sandInPoint[i] > (this.getMax() - this.getValue(indexI)) && 
+								((this.getValue(indexI)+sandInPoint[i])>this.getK() )) {
 							isIn = false;
+						}
+							
 						i++;
 					}
 					if (isIn == true) { // control
