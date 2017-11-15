@@ -21,7 +21,7 @@ public class SpaceState {
 	 * @param state 
 	 * @return
 	 */
-	public static boolean isGoal(State state)
+	public boolean isGoal(State state)
 	{
 		boolean isgoal=true;
 		int [][] matrix = state.getMatrix();
@@ -45,11 +45,11 @@ public class SpaceState {
 	 * @return
 	 * @throws CloneNotSupportedException
 	 */
-	public static HashMap<State,Action> successor(State state) throws CloneNotSupportedException {
-		HashMap<State,Action> successorList = new HashMap<>();
+	public HashMap<Action,State> successor(State state) throws CloneNotSupportedException {
+		HashMap<Action,State> successorList = new HashMap<>();
 		
 		for(Action a: state.generateActions()) {
-			successorList.put(state.newState(state, a),a);
+			successorList.put(a,state.newState(state, a));
 		}
 		
 		return successorList;

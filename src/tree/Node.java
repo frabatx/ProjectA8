@@ -101,7 +101,7 @@ public class Node implements Comparable<Node> {
 	 *            is the type of strategy that decide the type of order in tree
 	 * @return list of nodes
 	 */
-	public static ArrayList<Node> createNodesList(HashMap<State,Action> stateList, Node parentNode, int max_depth,
+	public static ArrayList<Node> createNodesList(HashMap<Action,State> stateList, Node parentNode, int max_depth,
 			Strategy strategy) {
   
 		ArrayList<Node> nodeList = new ArrayList<>();
@@ -126,9 +126,9 @@ public class Node implements Comparable<Node> {
 			break;
 		}
 
-		for (State s : stateList.keySet()) {
-			Node son = new Node(parentNode, s, depth, cost, value);
-			son.setAction(stateList.get(s));				//setting action in the node
+		for (Action s : stateList.keySet()) {
+			Node son = new Node(parentNode, stateList.get(s), depth, cost, value);
+			son.setAction(s);				//setting action in the node
 			son.setCost(son.getAction().getCost());			//setting cost by action in node
 			
 			if(strategy==Strategy.UCS) {					//ucs is only strategy that value is egual to cost

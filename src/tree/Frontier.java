@@ -32,7 +32,8 @@ public class Frontier{
 	}
 
 	public boolean isEmpty() {
-		return frontier.isEmpty();
+		boolean c=frontier.isEmpty();
+		return c;
 	}
 
 }

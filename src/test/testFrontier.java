@@ -2,33 +2,32 @@ package test;
 
 import java.util.ArrayList;
 
+import algorithm.UninformedSearchStrategy;
 import components.State;
-import problem.SpaceState;
+import problem.Problem;
 import problem.Strategy;
-import tree.Frontier;
 import tree.Node;
 
-public class testFrontier 
-{
+public class testFrontier {
+	public static final int DEPTH_MAX = 20;
+	public static final int INC_DEPTH = 1;
+
 	public static void main(String[] args) throws Exception {
-		Frontier frontier = new Frontier();
-		frontier.createFrontier();
 		State initialState = new State("Test.0.txt");
-		Node initialNode = new Node (null, initialState, 0, 0, 0 );
-		
-		//creo una lista di nodi parenti a InitialNode e gli passo una strategia, in base ad essa ordina il mio albero 
-		
-		ArrayList<Node> nodeList = Node.createNodesList(SpaceState.successor(initialNode.getState()), initialNode, 100, Strategy.UCS);
-		
-		for (Node node : nodeList) {
-			frontier.insert(node);
-			
+		Problem prob = new Problem(initialState);
+		UninformedSearchStrategy uniformedAlgorithm = new UninformedSearchStrategy();
+		for (Strategy s : Strategy.values()) {
+			ArrayList<Node> nodeSolution = uniformedAlgorithm.search(prob, s, DEPTH_MAX, INC_DEPTH);
+			int i = 0;
+			System.out.println("////////////////////////////////////");
+			System.out.println(s);
+			for (Node node : nodeSolution) {
+				System.out.println(i + node.toString());
+				i++;
+			}
+			System.out.println("////////////////////////////////////");
 		}
-		int i=0;
-		while(!frontier.isEmpty()) {
-			System.out.println(i+frontier.removeFirst().toString());
-			i++;
-		}
+
 	}
-	
+
 }

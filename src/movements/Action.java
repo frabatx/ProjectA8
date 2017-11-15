@@ -9,8 +9,7 @@ public class Action {
 
 	private Position nextPosition;
 	private HashMap<Position, Integer> sandMovement;
-	Random random = new Random();
-	private int cost=random.nextInt(100)+1;
+	private int cost=0;
 	/**
 	 * Action is the action of the Tractor on the Field.
 	 * It is represented by the next position of the Tractor and the displacement of the sand on 
@@ -28,7 +27,10 @@ public class Action {
 	}
 	
 	public int getCost() {
-		return this.cost;
+		for (Position p : sandMovement.keySet()) {
+			this.cost+=sandMovement.get(p);
+		}
+		return this.cost+1 ;
 	}
 	
 	public void setNextPosition(Position nextPosition) {
