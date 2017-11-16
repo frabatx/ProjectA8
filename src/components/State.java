@@ -245,9 +245,9 @@ public class State {
 	}
 
 	/**
-	 * Generate an action by a tractor. Started in a position P tractor can move sand
-	 * and go in a specific area of field. Method generate all possible action by a
-	 * tractor in the field.
+	 * Generate an action by a tractor. Started in a position P tractor can move
+	 * sand and go in a specific area of field. Method generate all possible action
+	 * by a tractor in the field.
 	 * 
 	 * @return ArrayList of Action that tractor cad do
 	 * @throws CloneNotSupportedException
@@ -275,11 +275,10 @@ public class State {
 
 						action.addElement(indexI, sandInPoint[i]); // add action to the possible actions
 
-						if (sandInPoint[i] > (this.getMax() - this.getValue(indexI)) && 
-								((this.getValue(indexI)+sandInPoint[i])>this.getK() )) {
+						if (sandInPoint[i] > (this.getMax() - this.getValue(indexI))) {
 							isIn = false;
 						}
-							
+
 						i++;
 					}
 					if (isIn == true) { // control

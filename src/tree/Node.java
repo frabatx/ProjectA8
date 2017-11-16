@@ -101,9 +101,9 @@ public class Node implements Comparable<Node> {
 	 *            is the type of strategy that decide the type of order in tree
 	 * @return list of nodes
 	 */
-	public static ArrayList<Node> createNodesList(HashMap<Action,State> stateList, Node parentNode, int max_depth,
+	public static ArrayList<Node> createNodesList(HashMap<Action, State> stateList, Node parentNode, int max_depth,
 			Strategy strategy) {
-  
+
 		ArrayList<Node> nodeList = new ArrayList<>();
 		int depth = parentNode.getDepth() + 1;
 		int cost = 0;
@@ -126,19 +126,22 @@ public class Node implements Comparable<Node> {
 			break;
 		}
 
+		if((parentNode.getDepth()+1)>max_depth) {
+			return null;
+		}
 		for (Action s : stateList.keySet()) {
 			Node son = new Node(parentNode, stateList.get(s), depth, cost, value);
-			son.setAction(s);				//setting action in the node
-			son.setCost(son.getAction().getCost());			//setting cost by action in node
-			
-			if(strategy==Strategy.UCS) {					//ucs is only strategy that value is egual to cost
+			son.setAction(s); // setting action in the node
+			son.setCost(son.getAction().getCost()); // setting cost by action in node
+
+			if (strategy == Strategy.UCS) { // ucs is only strategy that value is egual to cost
 				son.setValue(son.getAction().getCost());
 			}
 			nodeList.add(son);
 		}
 		return nodeList;
 	}
-	
+
 	public Node clone() throws CloneNotSupportedException {
 		return new Node(this.parent, this.state.clone(), this.depth, this.cost, this.value);
 	}
@@ -152,7 +155,5 @@ public class Node implements Comparable<Node> {
 	public String toString() {
 		return "Node [cost=" + cost + ", depth=" + depth + ", value=" + value + "]";
 	}
-	
-	
 
 }

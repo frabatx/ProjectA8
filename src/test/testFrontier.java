@@ -9,7 +9,7 @@ import problem.Strategy;
 import tree.Node;
 
 public class testFrontier {
-	public static final int DEPTH_MAX = 20;
+	public static final int DEPTH_MAX = 4;
 	public static final int INC_DEPTH = 1;
 
 	public static void main(String[] args) throws Exception {

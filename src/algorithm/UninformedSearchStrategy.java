@@ -16,9 +16,8 @@ public class UninformedSearchStrategy {
 	public ArrayList<Node> search(Problem prob, Strategy strategy, int depthMax, int incDepth)
 			throws CloneNotSupportedException {
 		int currentDepth = incDepth;
-		boolean solution = false;
 		ArrayList<Node> nodeSolution = null;
-		while (!solution && currentDepth <= depthMax) {
+		while (nodeSolution.isEmpty() && currentDepth <= depthMax) {
 			nodeSolution = limitedSearch(prob, strategy, currentDepth);
 			currentDepth += incDepth;
 		}
@@ -54,8 +53,14 @@ public class UninformedSearchStrategy {
 	}
 
 	private ArrayList<Node> createSolution(Node actualNode) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Node> solution = new ArrayList<Node>();
+		solution.add(actualNode);
+		Node node = actualNode.getParent();
+		while (node != null) {
+			solution.add(node);
+			node = node.getParent();
+		}
+		return solution;
 	}
 
 }
