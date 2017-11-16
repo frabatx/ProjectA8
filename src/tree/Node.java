@@ -147,7 +147,7 @@ public class Node implements Comparable<Node> {
 	public int compareTo(Node n) {
 		return ((Integer) this.value).compareTo((Integer) n.value);
 	}
-
+  
 	@Override
 	public String toString() {
 		return "Node [cost=" + cost + ", depth=" + depth + ", value=" + value + "]";
