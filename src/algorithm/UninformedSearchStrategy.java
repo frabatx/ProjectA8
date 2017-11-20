@@ -16,7 +16,7 @@ public class UninformedSearchStrategy {
 	public ArrayList<Node> search(Problem prob, Strategy strategy, int depthMax, int incDepth)
 			throws CloneNotSupportedException {
 		int currentDepth = incDepth;
-		ArrayList<Node> nodeSolution = null;
+		ArrayList<Node> nodeSolution = new ArrayList<Node>();
 		while (nodeSolution.isEmpty() && currentDepth <= depthMax) {
 			nodeSolution = limitedSearch(prob, strategy, currentDepth);
 			currentDepth += incDepth;
@@ -32,13 +32,14 @@ public class UninformedSearchStrategy {
 		frontier.insert(InitialNode);
 		boolean solution = false;
 		Node actualNode = null;
+		ArrayList<Node> nodeList = new ArrayList<Node>();
 		while (!solution && !frontier.isEmpty()) {
 			actualNode = frontier.removeFirst();
 			if (prob.getSpaceState().isGoal(actualNode.getState())) {
 				solution = true;
 			} else {
 				HashMap<Action, State> stateList = prob.getSpaceState().successor(actualNode.getState());
-				ArrayList<Node> nodeList = Node.createNodesList(stateList, actualNode, prof_max, strategy);
+			     nodeList = Node.createNodesList(stateList, actualNode, prof_max, strategy);
 				for (Node node : nodeList) {
 					frontier.insert(node);
 

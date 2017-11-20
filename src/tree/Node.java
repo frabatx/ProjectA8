@@ -127,12 +127,12 @@ public class Node implements Comparable<Node> {
 		}
 
 		if((parentNode.getDepth()+1)>max_depth) {
-			return null;
+			return nodeList;
 		}
 		for (Action s : stateList.keySet()) {
 			Node son = new Node(parentNode, stateList.get(s), depth, cost, value);
 			son.setAction(s); // setting action in the node
-			son.setCost(son.getAction().getCost()); // setting cost by action in node
+			son.setCost(son.getAction().getCost()+parentNode.getCost()); // setting cost by action in node
 
 			if (strategy == Strategy.UCS) { // ucs is only strategy that value is egual to cost
 				son.setValue(son.getAction().getCost());
