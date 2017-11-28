@@ -25,7 +25,7 @@ public class testFrontier {
 				System.out.println(i + node.toString());
 				i++;
 			}
-			System.out.println("////////////////////////////////////");
+			System.out.println("////////////////////////////////////"); 
 		} 
 
 	}
