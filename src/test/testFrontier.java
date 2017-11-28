@@ -26,7 +26,7 @@ public class testFrontier {
 				i++;
 			}
 			System.out.println("////////////////////////////////////");
-		}
+		} 
 
 	}
 
