@@ -17,7 +17,7 @@ public class testFrontier {
 		Problem prob = new Problem(initialState);
 		UninformedSearchStrategy uniformedAlgorithm = new UninformedSearchStrategy();
 		for (Strategy s : Strategy.values()) {
-			ArrayList<Node> nodeSolution = uniformedAlgorithm.search(prob, s, DEPTH_MAX, INC_DEPTH);
+			ArrayList<Node> nodeSolution = uniformedAlgorithm.search(prob, s, DEPTH_MAX, INC_DEPTH); 
 			int i = 0;
 			System.out.println("////////////////////////////////////");
 			System.out.println(s);
