@@ -7,7 +7,7 @@ import components.State;
 import movements.Action;
 import problem.Strategy;
 
-public class Node implements Comparable<Node> {
+public class Node implements Comparable<Node>  {
 
 	private Node parent;
 	private State state;
@@ -148,7 +148,8 @@ public class Node implements Comparable<Node> {
 
 	@Override
 	public int compareTo(Node n) {
-		return ((Integer) this.value).compareTo((Integer) n.value);
+		//return ((Integer) this.value).compareTo((Integer) n.value);
+		return ((Integer) n.value).compareTo((Integer) this.value);
 	}
   
 	@Override

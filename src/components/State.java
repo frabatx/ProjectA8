@@ -167,7 +167,10 @@ public class State {
 			state.setValue(p, sum);
 		}
 
-		state.setValue(state.getTractor().getPosition(), state.getK());
+		if (state.getValue(state.getTractor().getPosition()) > 5) {
+			state.setValue(state.getTractor().getPosition(), state.getK());
+		}
+
 		/*
 		 * effettuato lo spostamento il trattore prende la sabbia dalla nuova posizione,
 		 * la vecchia ha la sabbia che doveva essere spostata
@@ -256,7 +259,11 @@ public class State {
 		ArrayList<Position> nextPosition;
 		ArrayList<Action> actions = new ArrayList<Action>();
 		nextPosition = this.getTractor().getMovements();
-		ArrayList<String> possibleSand = Partition.generationSand(this.getSandMoving(), nextPosition.size());
+		int sandMoving = this.getSandMoving();
+		if (sandMoving <= 0) {
+			sandMoving = 0;
+		}
+		ArrayList<String> possibleSand = Partition.generationSand(sandMoving, nextPosition.size());
 		int[] sandInPoint = new int[nextPosition.size()];
 
 		for (Position indexP : nextPosition) { // per all possible positions we can have possible action (sand
@@ -283,12 +290,11 @@ public class State {
 					}
 					if (isIn == true) { // control
 						actions.add(action);
-						System.out.println(action.toString()); // test to can see all action
+						// System.out.println(action.toString()); // test to can see all action
 					}
 					count++;
 				}
 			}
-			// System.out.println();
 		}
 		return actions;
 	}

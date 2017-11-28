@@ -2,6 +2,7 @@ package algorithm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 import components.State;
 import movements.Action;
@@ -21,6 +22,7 @@ public class UninformedSearchStrategy {
 			nodeSolution = limitedSearch(prob, strategy, currentDepth);
 			currentDepth += incDepth;
 		}
+
 		return nodeSolution;
 	}
 
@@ -39,7 +41,7 @@ public class UninformedSearchStrategy {
 				solution = true;
 			} else {
 				HashMap<Action, State> stateList = prob.getSpaceState().successor(actualNode.getState());
-			     nodeList = Node.createNodesList(stateList, actualNode, prof_max, strategy);
+				nodeList = Node.createNodesList(stateList, actualNode, prof_max, strategy);
 				for (Node node : nodeList) {
 					frontier.insert(node);
 
@@ -49,7 +51,7 @@ public class UninformedSearchStrategy {
 		if (solution) {
 			return createSolution(actualNode);
 		} else {
-			return null;
+			return new ArrayList<Node>();
 		}
 	}
 
