@@ -39,9 +39,8 @@ public class testFrontier {
 				System.out.println();
 				i++;
 			}
-			System.out.println("////////////////////////////////////");
+
 		}
 
 	}
-
 }
