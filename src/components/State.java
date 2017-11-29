@@ -187,6 +187,7 @@ public class State {
 	 *            is the name of file
 	 * @throws IOException
 	 */
+	@SuppressWarnings("resource")
 	public void readField(String path) throws IOException {
 		FileReader file = new FileReader(path);
 		Scanner inputStream = new Scanner(file);
@@ -202,17 +203,24 @@ public class State {
 
 		// matrix filling
 		int row = 0;
-		int column;
+		int column = 0;
+		int sum=0;
 		while (inputStream.hasNextLine()) {
 			items = inputStream.nextLine();
 			items = items.trim();
 			array = items.split(" ");
+			
 
 			for (column = 0; column < sizeCol; column++) {
 				Position parser = new Position(column, row);
 				this.setValue(parser, Integer.parseInt(array[column]));
+				sum+=this.getValue(parser);
 			}
 			row++;
+		}
+		
+		if((sum)!=(this.k * Math.pow(row, 2))) {
+			throw new FileWrongExcepion("The file is wrong");
 		}
 
 		this.tractor.setLimit(sizeCol);

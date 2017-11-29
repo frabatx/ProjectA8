@@ -1,7 +1,6 @@
 package movements;
 
 import java.util.HashMap;
-import java.util.Random;
 
 import components.Position;
 

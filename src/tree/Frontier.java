@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
-public class Frontier{
+public class Frontier implements Iterable<Node>{
 
 	private PriorityQueue<Node> frontier;
 
@@ -37,6 +37,14 @@ public class Frontier{
 	public boolean isEmpty() {
 		boolean c=frontier.isEmpty();
 		return c;
+	}
+
+	@Override
+	public Iterator<Node> iterator() {
+		ArrayList<Node> a = new ArrayList<Node>();
+		a.addAll(frontier);
+		Collections.sort(a);
+		return a.iterator();
 	}
 
 

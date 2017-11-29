@@ -2,7 +2,6 @@ package tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 import components.State;
 import movements.Action;
 import problem.Strategy;
@@ -15,7 +14,6 @@ public class Node implements Comparable<Node> {
 	private Action action;
 	private int depth;
 	private int value;
-	private Random random = new Random();
 
 	public Node(Node parent, State state, int depth, int cost, int value) {
 		super();
@@ -24,16 +22,6 @@ public class Node implements Comparable<Node> {
 		this.cost = cost;
 		this.depth = depth;
 		this.value = value;
-	}
-
-	public Node(Node parent, State state, int depth, int cost) {
-		super();
-		this.parent = parent;
-		this.state = state;
-		this.cost = cost;
-		this.depth = depth;
-		this.value = random.nextInt(100) + 1;
-
 	}
 
 	// GETTER

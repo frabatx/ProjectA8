@@ -2,14 +2,10 @@ package algorithm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Scanner;
 
-import components.Position;
 import components.State;
 import movements.Action;
 import problem.Problem;
-import problem.SpaceState;
 import problem.Strategy;
 import tree.Frontier;
 import tree.Node;
@@ -39,55 +35,16 @@ public class UninformedSearchStrategy {
 		ArrayList<Node> nodeList = new ArrayList<Node>();
 		while (!solution && !frontier.isEmpty()) {
 			actualNode = frontier.removeFirst();
-			
-		/*	Scanner tastiera = new Scanner(System.in);
-			System.out.println("Padre" + actualNode.toString() + " " + actualNode.getAction());
-			
-			int[][] matrix = actualNode.getState().getMatrix();
-			for (int j = 0; j < actualNode.getState().getSizeRow(); j++) {
-				for (int j2 = 0; j2 < actualNode.getState().getSizeCol(); j2++) {
-					if (actualNode.getState().getTractor().getPosition().equals(new Position(j2, j))) {
-						System.out.print(matrix[j2][j] + "*");
-					} else {
-						System.out.print(matrix[j2][j]);
-					}
 
-				}
-				System.out.println();
-			}
-			int c = tastiera.nextInt();*/
 			if (prob.getSpaceState().isGoal(actualNode.getState())) {
 				solution = true;
 			} else {
 				HashMap<Action, State> stateList = prob.getSpaceState().successor(actualNode.getState());
 				nodeList = Node.createNodesList(stateList, actualNode, prof_max, strategy);
-			/*	if(nodeList.isEmpty()) {
-					System.out.println("Non mi sposto");
-				}
-				for (Node node : nodeList) {
-					System.out.println("Figlio" + node.toString() + " " + node.getAction());
-					int[][] matrix2 = node.getState().getMatrix();
-					for (int j = 0; j < node.getState().getSizeRow(); j++) {
-						for (int j2 = 0; j2 < node.getState().getSizeCol(); j2++) {
-							if (node.getState().getTractor().getPosition().equals(new Position(j2, j))) {
-								System.out.print(matrix2[j2][j] + "*");
-							} else {
-								System.out.print(matrix2[j2][j]);
-							}
 
-						}
-						System.out.println();
-					}
-					System.out.println();
-				}
-				c = tastiera.nextInt();*/
-				
-				
 				for (Node node : nodeList) {
 					frontier.insert(node);
-
 				}
-				
 			}
 		}
 		if (solution) {
