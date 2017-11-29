@@ -1,5 +1,5 @@
 package problem;
 
 public enum Strategy {
-	BFS, DFS, DLS, IDS, UCS
+	BFS, DFS, DLS, IDS, UCS, A
 }

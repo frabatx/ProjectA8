@@ -1,7 +1,9 @@
 package algorithm;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Hashtable;
 
 import components.State;
 import movements.Action;
@@ -9,9 +11,14 @@ import problem.Problem;
 import problem.Strategy;
 import tree.Frontier;
 import tree.Node;
+import tree.ReverseOrderComparator;
 
 public class UninformedSearchStrategy {
 
+	private long spatialComplexity;
+	private boolean optimization=false;
+	private Hashtable<String, Integer> visited = new Hashtable<>(); 
+	
 	public ArrayList<Node> search(Problem prob, Strategy strategy, int depthMax, int incDepth)
 			throws CloneNotSupportedException {
 		int currentDepth = incDepth;
@@ -35,7 +42,7 @@ public class UninformedSearchStrategy {
 		ArrayList<Node> nodeList = new ArrayList<Node>();
 		while (!solution && !frontier.isEmpty()) {
 			actualNode = frontier.removeFirst();
-
+			spatialComplexity++;
 			if (prob.getSpaceState().isGoal(actualNode.getState())) {
 				solution = true;
 			} else {
@@ -62,7 +69,19 @@ public class UninformedSearchStrategy {
 			solution.add(node);
 			node = node.getParent();
 		}
+		Collections.sort(solution,new ReverseOrderComparator());
 		return solution;
 	}
+	
+	public long getSpatialComplexity() {
+		return spatialComplexity;
+	}
+	public void setSpatialComplexity(long i) {
+		spatialComplexity=i;
+	}
 
+	public void setOptimization(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -336,4 +336,12 @@ public class State {
 	public State clone() throws CloneNotSupportedException {
 		return new State(getMatrix(), k, max, sizeCol, sizeRow, getTractor());
 	}
+
+	public int getHeuristic() {
+		  int h=0;
+		    for(int i=0; i<this.getSizeCol(); i++)
+		      for(int j=0; j<this.getSizeRow(); j++)
+		        if(field[i][j]!=k) h++;
+		    return h;
+	}
 }

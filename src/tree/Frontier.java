@@ -1,11 +1,8 @@
 package tree;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.PriorityQueue;
 
-public class Frontier implements Iterable<Node>{
+public class Frontier{
 
 	private PriorityQueue<Node> frontier;
 
@@ -39,13 +36,13 @@ public class Frontier implements Iterable<Node>{
 		return c;
 	}
 
-	@Override
+	/*@Override
 	public Iterator<Node> iterator() {
 		ArrayList<Node> a = new ArrayList<Node>();
 		a.addAll(frontier);
-		Collections.sort(a);
+		Collections.sort(a,new ReverseOrderComparator());
 		return a.iterator();
-	}
+	}*/
 
 
 }

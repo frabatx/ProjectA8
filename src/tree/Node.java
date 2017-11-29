@@ -1,12 +1,13 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import components.State;
 import movements.Action;
 import problem.Strategy;
 
-public class Node implements Comparable<Node> {
+public class Node implements Comparable<Node>{
 
 	private Node parent;
 	private State state;
@@ -125,6 +126,10 @@ public class Node implements Comparable<Node> {
 			if (strategy == Strategy.UCS) { // ucs is only strategy that value is egual to cost
 				son.setValue(son.getAction().getCost());
 			}
+			if (strategy == Strategy.A) {
+				son.setValue((son.getAction().getCost() + son.getState().getHeuristic()));
+			}
+			
 			nodeList.add(son);
 		}
 		return nodeList;
@@ -133,6 +138,11 @@ public class Node implements Comparable<Node> {
 	public Node clone() throws CloneNotSupportedException {
 		return new Node(this.parent, this.state.clone(), this.depth, this.cost, this.value);
 	}
+	
+	public static Comparator<Node> getValueOrder(){
+		return new ReverseOrderComparator();
+	}
+	
 
 	@Override
 	public int compareTo(Node n) {
