@@ -167,7 +167,7 @@ public class State {
 			state.setValue(p, sum);
 		}
 
-		if (state.getValue(state.getTractor().getPosition()) > 5) {
+		if (state.getValue(state.getTractor().getPosition()) > state.getK()) {
 			state.setValue(state.getTractor().getPosition(), state.getK());
 		}
 

@@ -7,7 +7,7 @@ import components.State;
 import movements.Action;
 import problem.Strategy;
 
-public class Node implements Comparable<Node>  {
+public class Node implements Comparable<Node> {
 
 	private Node parent;
 	private State state;
@@ -126,13 +126,13 @@ public class Node implements Comparable<Node>  {
 			break;
 		}
 
-		if((parentNode.getDepth()+1)>max_depth) {
+		if ((parentNode.getDepth() + 1) > max_depth) {
 			return nodeList;
 		}
 		for (Action s : stateList.keySet()) {
 			Node son = new Node(parentNode, stateList.get(s), depth, cost, value);
 			son.setAction(s); // setting action in the node
-			son.setCost(son.getAction().getCost()+parentNode.getCost()); // setting cost by action in node
+			son.setCost(son.getAction().getCost() + parentNode.getCost()); // setting cost by action in node
 
 			if (strategy == Strategy.UCS) { // ucs is only strategy that value is egual to cost
 				son.setValue(son.getAction().getCost());
@@ -148,10 +148,9 @@ public class Node implements Comparable<Node>  {
 
 	@Override
 	public int compareTo(Node n) {
-		//return ((Integer) this.value).compareTo((Integer) n.value);
-		return ((Integer) n.value).compareTo((Integer) this.value);
+		return ((Integer) this.value).compareTo((Integer) n.value);
 	}
-  
+
 	@Override
 	public String toString() {
 		return "Node [cost=" + cost + ", depth=" + depth + ", value=" + value + "]";
