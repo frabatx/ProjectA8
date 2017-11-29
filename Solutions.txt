@@ -1,6 +1,6 @@
 ////////////////////////////////////
 Spatial Complexity: 407858
-Spatial Time: 5159.0 MilliSecond
+Spatial Time: 30674.0 MilliSecond
 BFS
 Node n: 0
 null
@@ -49,7 +49,7 @@ Node n: 8
 111
 ////////////////////////////////////
 Spatial Complexity: 299900
-Spatial Time: 2013.0 MilliSecond
+Spatial Time: 9223.0 MilliSecond
 DFS
 Node n: 0
 null
@@ -98,7 +98,7 @@ Node n: 8
 111
 ////////////////////////////////////
 Spatial Complexity: 274594
-Spatial Time: 1539.0 MilliSecond
+Spatial Time: 7816.0 MilliSecond
 DLS
 Node n: 0
 null
@@ -147,7 +147,7 @@ Node n: 8
 111
 ////////////////////////////////////
 Spatial Complexity: 231924
-Spatial Time: 1292.0 MilliSecond
+Spatial Time: 6295.0 MilliSecond
 IDS
 Node n: 0
 null
@@ -196,7 +196,7 @@ Node n: 8
 1*11
 ////////////////////////////////////
 Spatial Complexity: 242064
-Spatial Time: 1362.0 MilliSecond
+Spatial Time: 7010.0 MilliSecond
 UCS
 Node n: 0
 null
@@ -245,7 +245,7 @@ Node n: 8
 111
 ////////////////////////////////////
 Spatial Complexity: 226939
-Spatial Time: 1269.0 MilliSecond
+Spatial Time: 6664.0 MilliSecond
 A
 Node n: 0
 null

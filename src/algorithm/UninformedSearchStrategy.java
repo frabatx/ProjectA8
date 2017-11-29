@@ -25,6 +25,7 @@ public class UninformedSearchStrategy {
 		ArrayList<Node> nodeSolution = new ArrayList<Node>();
 		while (nodeSolution.isEmpty() && currentDepth <= depthMax) {
 			nodeSolution = limitedSearch(prob, strategy, currentDepth);
+			this.visited.clear();
 			currentDepth += incDepth;
 		}
 

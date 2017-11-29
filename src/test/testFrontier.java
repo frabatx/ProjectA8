@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,7 +15,7 @@ import problem.Strategy;
 import tree.Node;
 
 public class testFrontier {
-	public static final int DEPTH_MAX = 500;
+	public static final int DEPTH_MAX = 20;
 	public static final int INC_DEPTH = 1;
 
 	public static void main(String[] args) throws Exception {
@@ -28,18 +27,19 @@ public class testFrontier {
 
 		for (Strategy s : Strategy.values()) {
 			Scanner tastiera = new Scanner(System.in);
-			System.out.println("Do you want to use optimization? (Y / N)");
+			
 			String choice;
-			do {
-				choice = tastiera.nextLine();
-			} while (!choice.equals("Y") || !choice.equals("N"));
+			/*do {
+				System.out.println("Do you want to use optimization? (Y / N)");
+				choice = (String)tastiera.nextLine();
+			} while (!choice.equals("Y"));*/
 
 			uniformedAlgorithm.setSpatialComplexity(0);
 			double initialTime;
 			double finalTime;
 
 			initialTime = System.currentTimeMillis();
-			if (choice.equals("Y")) {
+			if (true) {
 				uniformedAlgorithm.setOptimization(true);
 			}
 			ArrayList<Node> nodeSolution = uniformedAlgorithm.search(prob, s, DEPTH_MAX, INC_DEPTH);
@@ -66,6 +66,7 @@ public class testFrontier {
 				i++;
 			}
 			nodeSolution.clear();
+			tastiera.close();
 		}
 		out.close();
 	}
