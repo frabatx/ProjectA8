@@ -16,9 +16,9 @@ import tree.ReverseOrderComparator;
 public class UninformedSearchStrategy {
 
 	private long spatialComplexity;
-	private boolean optimization=false;
-	private Hashtable<String, Integer> visited = new Hashtable<>();  
-	
+	private boolean optimization = false;
+	private Hashtable<String, Integer> visited = new Hashtable<>();
+
 	public ArrayList<Node> search(Problem prob, Strategy strategy, int depthMax, int incDepth)
 			throws CloneNotSupportedException {
 		int currentDepth = incDepth;
@@ -50,7 +50,11 @@ public class UninformedSearchStrategy {
 				nodeList = Node.createNodesList(stateList, actualNode, prof_max, strategy);
 
 				for (Node node : nodeList) {
-					frontier.insert(node);
+					if (optimization == true) {
+						if (isVisited(node, strategy))
+							frontier.insert(node);
+					} else
+						frontier.insert(node);
 				}
 			}
 		}
@@ -58,6 +62,23 @@ public class UninformedSearchStrategy {
 			return createSolution(actualNode);
 		} else {
 			return new ArrayList<Node>();
+		}
+	}
+
+	private boolean isVisited(Node node, Strategy strategy) throws CloneNotSupportedException {
+		String hash=node.getPrimaryKey();
+		if(!visited.contains(hash)) {
+			visited.put(hash, node.getValueHash(strategy));
+			return true;
+		}else {
+			if(visited.get(hash) > node.getValueHash(strategy)) {
+				visited.remove(hash);
+				visited.put(hash,  node.getValueHash(strategy));
+				return true;
+			}else {
+				spatialComplexity--;
+				return false;
+			}
 		}
 	}
 
@@ -69,19 +90,19 @@ public class UninformedSearchStrategy {
 			solution.add(node);
 			node = node.getParent();
 		}
-		Collections.sort(solution,new ReverseOrderComparator());
+		Collections.sort(solution, new ReverseOrderComparator());
 		return solution;
 	}
-	
+
 	public long getSpatialComplexity() {
 		return spatialComplexity;
 	}
+
 	public void setSpatialComplexity(long i) {
-		spatialComplexity=i;
+		spatialComplexity = i;
 	}
 
 	public void setOptimization(boolean b) {
-		// TODO Auto-generated method stub
-		
+		this.optimization=b;
 	}
 }

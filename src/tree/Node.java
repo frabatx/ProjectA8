@@ -3,6 +3,8 @@ package tree;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+
+import components.Position;
 import components.State;
 import movements.Action;
 import problem.Strategy;
@@ -134,6 +136,25 @@ public class Node implements Comparable<Node>{
 		}
 		return nodeList;
 	}
+	
+	public String getPrimaryKey() throws CloneNotSupportedException {
+		String key="";
+		
+		for (int i = 0; i < this.state.getSizeCol(); i++) {
+			for (int j = 0; j < this.state.getSizeRow(); j++) {
+				key+=this.state.getValue(new Position(i,j));
+			}
+		}
+		key+="?"+this.state.getTractor().getPosition().toString();
+		return key;
+	}
+
+	public Integer getValueHash(Strategy strategy) {
+		if(strategy == Strategy.BFS || strategy == Strategy.DFS || strategy == Strategy.DLS || strategy == Strategy.IDS)
+			return cost;
+		else 
+			return value;
+	}
 
 	public Node clone() throws CloneNotSupportedException {
 		return new Node(this.parent, this.state.clone(), this.depth, this.cost, this.value);
@@ -154,4 +175,5 @@ public class Node implements Comparable<Node>{
 		return "Node [cost=" + cost + ", depth=" + depth + ", value=" + value + "]";
 	}
 
+	
 }
