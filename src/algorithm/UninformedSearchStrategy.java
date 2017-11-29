@@ -17,7 +17,7 @@ public class UninformedSearchStrategy {
 
 	private long spatialComplexity;
 	private boolean optimization=false;
-	private Hashtable<String, Integer> visited = new Hashtable<>(); 
+	private Hashtable<String, Integer> visited = new Hashtable<>();  
 	
 	public ArrayList<Node> search(Problem prob, Strategy strategy, int depthMax, int incDepth)
 			throws CloneNotSupportedException {
