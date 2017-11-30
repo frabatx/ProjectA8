@@ -139,13 +139,13 @@ public class Node implements Comparable<Node>{
 	
 	public String getPrimaryKey() throws CloneNotSupportedException {
 		String key="";
-		
+		int sum=0;
 		for (int i = 0; i < this.state.getSizeCol(); i++) {
 			for (int j = 0; j < this.state.getSizeRow(); j++) {
-				key+=this.state.getValue(new Position(i,j));
+				sum+=this.state.getValue(new Position(i,j));
 			}
 		}
-		key+="?"+this.state.getTractor().getPosition().toString();
+		key=sum+"?"+this.state.getTractor().getPosition().toString();
 		return key;
 	}
 
