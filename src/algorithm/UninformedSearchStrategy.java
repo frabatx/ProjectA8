@@ -32,8 +32,7 @@ public class UninformedSearchStrategy {
 		return nodeSolution;
 	}
 
-	private ArrayList<Node> limitedSearch(Problem prob, Strategy strategy, int prof_max)
-			throws CloneNotSupportedException {
+	private ArrayList<Node> limitedSearch(Problem prob, Strategy strategy, int prof_max) throws CloneNotSupportedException {
 		Frontier frontier = new Frontier();
 		Node InitialNode = new Node(null, prob.getInitialState(), 0, 0, 0);
 		frontier.createFrontier();
@@ -41,6 +40,7 @@ public class UninformedSearchStrategy {
 		boolean solution = false;
 		Node actualNode = null;
 		ArrayList<Node> nodeList = new ArrayList<Node>();
+		
 		while (!solution && !frontier.isEmpty()) {
 			actualNode = frontier.removeFirst();
 			spatialComplexity++;
@@ -49,13 +49,14 @@ public class UninformedSearchStrategy {
 			} else {
 				HashMap<Action, State> stateList = prob.getSpaceState().successor(actualNode.getState());
 				nodeList = Node.createNodesList(stateList, actualNode, prof_max, strategy);
-
+				
 				for (Node node : nodeList) {
 					if (optimization == true) {
 						if (isVisited(node, strategy))
 							frontier.insert(node);
-					} else
+					} else {
 						frontier.insert(node);
+					}
 				}
 			}
 		}
@@ -75,7 +76,7 @@ public class UninformedSearchStrategy {
 			if(visited.get(hash) > node.getValueHash(strategy)) {
 				visited.remove(hash);
 				visited.put(hash,  node.getValueHash(strategy));
-				return true;
+				return false;
 			}else {
 				spatialComplexity--;
 				return false;

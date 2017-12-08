@@ -48,6 +48,7 @@ public class Action {
 		this.sandMovement.put(p, i);
 	}
 	
+	@Override
 	public String toString() {
 		String ref="";
 		ref+="("+this.nextPosition+") [";
@@ -58,4 +59,41 @@ public class Action {
 		ref+=this.cost+"]";
 		return ref;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + cost;
+		result = prime * result + ((nextPosition == null) ? 0 : nextPosition.hashCode());
+		result = prime * result + ((sandMovement == null) ? 0 : sandMovement.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Action))
+			return false;
+		Action other = (Action) obj;
+		if (cost != other.cost)
+			return false;
+		if (nextPosition == null) {
+			if (other.nextPosition != null)
+				return false;
+		} else if (!nextPosition.equals(other.nextPosition))
+			return false;
+		if (sandMovement == null) {
+			if (other.sandMovement != null)
+				return false;
+		} else if (!sandMovement.equals(other.sandMovement))
+			return false;
+		return true;
+	}
+	
+	
+	
 }

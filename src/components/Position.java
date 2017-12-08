@@ -46,6 +46,15 @@ public class Position implements Comparable<Position>  {
 		}
 		return false;
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
 
 	@Override
 	public int compareTo(Position p) {
@@ -56,6 +65,8 @@ public class Position implements Comparable<Position>  {
 	public String toString() {
 		return "(" + y + "," + x + ")";
 	}
+	
+	
 	
 	public Position clone() {
 		return new Position(y, x);

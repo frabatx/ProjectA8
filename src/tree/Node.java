@@ -17,6 +17,7 @@ public class Node implements Comparable<Node>{
 	private Action action;
 	private int depth;
 	private int value;
+	
 
 	public Node(Node parent, State state, int depth, int cost, int value) {
 		super();
@@ -28,6 +29,8 @@ public class Node implements Comparable<Node>{
 	}
 
 	// GETTER
+
+	
 
 	public Node getParent() {
 		return parent;
@@ -123,15 +126,14 @@ public class Node implements Comparable<Node>{
 		for (Action s : stateList.keySet()) {
 			Node son = new Node(parentNode, stateList.get(s), depth, cost, value);
 			son.setAction(s); // setting action in the node
-			son.setCost(son.getAction().getCost() + parentNode.getCost()); // setting cost by action in node
-
+			son.setCost(s.getCost() + parentNode.getCost()); // setting cost by action in node
+			
 			if (strategy == Strategy.UCS) { // ucs is only strategy that value is egual to cost
-				son.setValue(son.getAction().getCost());
+				son.setValue(s.getCost());
 			}
 			if (strategy == Strategy.A) {
-				son.setValue((son.getAction().getCost() + son.getState().getHeuristic()));
+				son.setValue((s.getCost() + son.getState().getHeuristic()));
 			}
-			
 			nodeList.add(son);
 		}
 		return nodeList;
@@ -139,13 +141,12 @@ public class Node implements Comparable<Node>{
 	
 	public String getPrimaryKey() throws CloneNotSupportedException {
 		String key="";
-		int sum=0;
 		for (int i = 0; i < this.state.getSizeCol(); i++) {
 			for (int j = 0; j < this.state.getSizeRow(); j++) {
-				sum+=this.state.getValue(new Position(i,j));
+				key+=this.state.getValue(new Position(i,j));
 			}
 		}
-		key=sum+"?"+this.state.getTractor().getPosition().toString();
+		key+="?"+this.state.getTractor().getPosition().toString();
 		return key;
 	}
 
