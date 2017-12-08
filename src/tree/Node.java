@@ -14,23 +14,46 @@ public class Node implements Comparable<Node>{
 	private Node parent;
 	private State state;
 	private int cost;
-	private Action action;
 	private int depth;
 	private int value;
+	private Action action;
+	private Strategy strategy;
 	
-
-	public Node(Node parent, State state, int depth, int cost, int value) {
-		super();
+	public Node(Node parent, State state, Action action, Strategy s) {
 		this.parent = parent;
 		this.state = state;
-		this.cost = cost;
-		this.depth = depth;
-		this.value = value;
+		this.cost = parent.getCost()+action.getCost()+1;
+		this.depth = parent.getDepth()+1;
+		this.action = action;
+		this.strategy = s;
+		
+		switch (s) {
+		case BFS:
+			value = depth;
+			break;
+		case DFS:
+			value = -(depth);
+			break;
+		case DLS:
+			value = -(depth);
+			break;
+		case IDS:
+			value = -depth;
+			break;
+		case UCS:
+			value = cost;
+			break;
+		case A:
+			value = cost + state.getHeuristic(); 
+		default:
+			break;
+		}
 	}
-
-	// GETTER
-
 	
+	public Node(State state) {
+			this.state=state;
+		}
+	// GETTER
 
 	public Node getParent() {
 		return parent;
@@ -95,45 +118,15 @@ public class Node implements Comparable<Node>{
 	 *            is the type of strategy that decide the type of order in tree
 	 * @return list of nodes
 	 */
-	public static ArrayList<Node> createNodesList(HashMap<Action, State> stateList, Node parentNode, int max_depth,
-			Strategy strategy) {
-
+	public static ArrayList<Node> createNodesList(HashMap<Action, State> stateList, Node parentNode, int max_depth, Strategy strategy) {
+		
 		ArrayList<Node> nodeList = new ArrayList<>();
-		int depth = parentNode.getDepth() + 1;
-		int cost = 0;
-		int value = 0;
 
-		switch (strategy) {
-		case BFS:
-			value = depth;
-			break;
-		case DFS:
-			value = -(depth);
-			break;
-		case DLS:
-			value = -(depth);
-			break;
-		case IDS:
-			value = -depth;
-			break;
-		default:
-			break;
-		}
-
-		if ((parentNode.getDepth() + 1) > max_depth) {
+		if ((parentNode.getDepth() + 1) > max_depth) 
 			return nodeList;
-		}
+		
 		for (Action s : stateList.keySet()) {
-			Node son = new Node(parentNode, stateList.get(s), depth, cost, value);
-			son.setAction(s); // setting action in the node
-			son.setCost(s.getCost() + parentNode.getCost()); // setting cost by action in node
-			
-			if (strategy == Strategy.UCS) { // ucs is only strategy that value is egual to cost
-				son.setValue(s.getCost());
-			}
-			if (strategy == Strategy.A) {
-				son.setValue((s.getCost() + son.getState().getHeuristic()));
-			}
+			Node son = new Node(parentNode, stateList.get(s), s, strategy);
 			nodeList.add(son);
 		}
 		return nodeList;
@@ -158,7 +151,7 @@ public class Node implements Comparable<Node>{
 	}
 
 	public Node clone() throws CloneNotSupportedException {
-		return new Node(this.parent, this.state.clone(), this.depth, this.cost, this.value);
+		return new Node(this.parent, this.state.clone(), this.action, this.strategy);
 	}
 	
 	public static Comparator<Node> getValueOrder(){

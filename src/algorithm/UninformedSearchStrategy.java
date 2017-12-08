@@ -34,7 +34,7 @@ public class UninformedSearchStrategy {
 
 	private ArrayList<Node> limitedSearch(Problem prob, Strategy strategy, int prof_max) throws CloneNotSupportedException {
 		Frontier frontier = new Frontier();
-		Node InitialNode = new Node(null, prob.getInitialState(), 0, 0, 0);
+		Node InitialNode = new Node(prob.getInitialState());
 		frontier.createFrontier();
 		frontier.insert(InitialNode);
 		boolean solution = false;

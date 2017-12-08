@@ -14,7 +14,7 @@ import movements.Partition;
 
 public class State {
 
-	private int[][] field;
+	private int [][] field;
 	private int k;
 	private int max;
 	private int sizeCol;
