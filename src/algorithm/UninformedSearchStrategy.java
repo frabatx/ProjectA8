@@ -72,13 +72,12 @@ public class UninformedSearchStrategy {
 
 	private boolean isVisited(Node node, Strategy strategy) throws CloneNotSupportedException {
 		String hash=node.getPrimaryKey();
-		if(!visited.contains(hash)) {
+		if(!visited.containsKey(hash)) {
 			visited.put(hash, node.getValueHash(strategy));
 			return true;
 		}else {
 			if(visited.get(hash) > node.getValueHash(strategy)) {
-				visited.remove(hash);
-				visited.put(hash,  node.getValueHash(strategy));
+				visited.replace(hash, node.getValueHash(strategy));
 				return true;
 			}else {
 				spatialComplexity--;
