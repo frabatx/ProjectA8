@@ -15,14 +15,10 @@ import problem.Strategy;
 import tree.Node;
 
 public class testFrontier {
-	public static final int DEPTH_MAX = 20;
-	public static final int INC_DEPTH = 1;
+	static int maxDepth;
+	static int incDepth;
 
 	public static void main(String[] args) throws Exception {
-
-		// MENU
-
-		//
 
 		State initialState = new State("Test.0.txt");
 		Problem prob = new Problem(initialState);
@@ -44,6 +40,10 @@ public class testFrontier {
 			System.out.println("***********************************");
 			System.out.println("Choose the strategy");
 			String choice = tastiera.next();
+			System.out.println("Choose max depth: ");
+			maxDepth = tastiera.nextInt();
+			incDepth = maxDepth;
+			
 			switch (choice) {
 			case "1":
 				s = Strategy.BFS;
@@ -56,6 +56,8 @@ public class testFrontier {
 				break;
 			case "4":
 				s = Strategy.IDS;
+				System.out.println("Insert Increment Depth: ");
+				incDepth = tastiera.nextInt();
 				break;
 			case "5":
 				s = Strategy.UCS;
@@ -79,7 +81,7 @@ public class testFrontier {
 		uniformedAlgorithm.setOptimization(optim);
 
 		initialTime = System.currentTimeMillis();
-		ArrayList<Node> nodeSolution = uniformedAlgorithm.search(prob, s, DEPTH_MAX, INC_DEPTH);
+		ArrayList<Node> nodeSolution = uniformedAlgorithm.search(prob, s, maxDepth, incDepth);
 		finalTime = System.currentTimeMillis();
 
 		out.println("////////////////////////////////////");

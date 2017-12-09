@@ -24,7 +24,9 @@ public class UninformedSearchStrategy {
 		int currentDepth = incDepth;
 		ArrayList<Node> nodeSolution = new ArrayList<Node>();
 		while (nodeSolution.isEmpty() && currentDepth <= depthMax) {
+			this.spatialComplexity=0;
 			nodeSolution = limitedSearch(prob, strategy, currentDepth);
+			System.out.println(nodeSolution.size());
 			this.visited.clear();
 			currentDepth += incDepth;
 		}
@@ -34,7 +36,9 @@ public class UninformedSearchStrategy {
 
 	private ArrayList<Node> limitedSearch(Problem prob, Strategy strategy, int prof_max) throws CloneNotSupportedException {
 		Frontier frontier = new Frontier();
+		
 		Node InitialNode = new Node(prob.getInitialState());
+		
 		frontier.createFrontier();
 		frontier.insert(InitialNode);
 		boolean solution = false;
@@ -43,13 +47,12 @@ public class UninformedSearchStrategy {
 		
 		while (!solution && !frontier.isEmpty()) {
 			actualNode = frontier.removeFirst();
-			spatialComplexity++;
 			if (prob.getSpaceState().isGoal(actualNode.getState())) {
 				solution = true;
 			} else {
 				HashMap<Action, State> stateList = prob.getSpaceState().successor(actualNode.getState());
 				nodeList = Node.createNodesList(stateList, actualNode, prof_max, strategy);
-				
+				spatialComplexity+=nodeList.size();
 				for (Node node : nodeList) {
 					if (optimization == true) {
 						if (isVisited(node, strategy))
@@ -76,7 +79,7 @@ public class UninformedSearchStrategy {
 			if(visited.get(hash) > node.getValueHash(strategy)) {
 				visited.remove(hash);
 				visited.put(hash,  node.getValueHash(strategy));
-				return false;
+				return true;
 			}else {
 				spatialComplexity--;
 				return false;
