@@ -69,7 +69,15 @@ public class UninformedSearchStrategy {
 			return new ArrayList<Node>();
 		}
 	}
-
+	
+	/**
+	 * Method that check if the node is visited before or not yet.
+	 * If is visited, it control his value and replace with previous node
+	 * @param node the node to control
+	 * @param strategy the strategy of search
+	 * @return boolean value
+	 * @throws CloneNotSupportedException
+	 */
 	private boolean isVisited(Node node, Strategy strategy) throws CloneNotSupportedException {
 		String hash=node.getPrimaryKey();
 		if(!visited.containsKey(hash)) {
@@ -86,6 +94,12 @@ public class UninformedSearchStrategy {
 		}
 	}
 
+	
+	/**
+	 * Create Solution is a method that return the solution of frontier. From solution state to start state
+	 * @param actualNode is solution node at the end of search
+	 * @return
+	 */
 	private ArrayList<Node> createSolution(Node actualNode) {
 		ArrayList<Node> solution = new ArrayList<Node>();
 		solution.add(actualNode);
