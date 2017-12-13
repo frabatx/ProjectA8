@@ -9,6 +9,12 @@ import components.State;
 import movements.Action;
 import problem.Strategy;
 
+/**
+ * Node is the unique element of tree Frontier.
+ * @author Francesco Battista
+ * @author Daniele Acquaviva
+ * @author Ezgi Iscioglu 
+ */
 public class Node implements Comparable<Node>{
 
 	private Node parent;
@@ -19,6 +25,25 @@ public class Node implements Comparable<Node>{
 	private Action action;
 	private Strategy strategy;
 	
+	//COSTRUCTOR
+	/**
+	 * A node is composed by : 
+	 * Node parent,
+	 * State,
+	 * Cost,
+	 * Value,
+	 * Depth,
+	 * Action,
+	 * Strategy.
+	 * 
+	 * Strategy decides what kind of value to assign to "value"
+	 * 
+	 * @param parent
+	 * @param state
+	 * @param action
+	 * @param s
+	 * strategy
+	 */
 	public Node(Node parent, State state, Action action, Strategy s) {
 		this.parent = parent;
 		this.state = state;
@@ -50,6 +75,10 @@ public class Node implements Comparable<Node>{
 		}
 	}
 	
+	/**
+	 * A node can be created starting from a single state
+	 * @param state
+	 */
 	public Node(State state) {
 			this.state=state;
 		}
@@ -132,6 +161,12 @@ public class Node implements Comparable<Node>{
 		return nodeList;
 	}
 	
+	/**
+	 * This method return an unique string that represents the node
+	 * @return
+	 * unique string 
+	 * @throws CloneNotSupportedException
+	 */
 	public String getPrimaryKey() throws CloneNotSupportedException {
 		String key="";
 		for (int i = 0; i < this.state.getSizeCol(); i++) {
@@ -142,22 +177,31 @@ public class Node implements Comparable<Node>{
 		key+="?"+this.state.getTractor().getPosition().toString();
 		return key;
 	}
-
+	
+	/**
+	 * Starting by strategy can be reached a value of node
+	 * @param strategy
+	 * @return
+	 */
 	public Integer getValueHash(Strategy strategy) {
 		if(strategy == Strategy.BFS || strategy == Strategy.DFS || strategy == Strategy.DLS || strategy == Strategy.IDS)
 			return cost;
 		else 
 			return value;
 	}
-
+	
+	@Override
 	public Node clone() throws CloneNotSupportedException {
 		return new Node(this.parent, this.state.clone(), this.action, this.strategy);
 	}
 	
+	/**
+	 * This method return a comparator to revers order in solution
+	 * @return
+	 */
 	public static Comparator<Node> getValueOrder(){
 		return new ReverseOrderComparator();
 	}
-	
 
 	@Override
 	public int compareTo(Node n) {

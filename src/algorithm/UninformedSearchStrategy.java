@@ -111,15 +111,29 @@ public class UninformedSearchStrategy {
 		Collections.sort(solution, new ReverseOrderComparator());
 		return solution;
 	}
-
+	
+	/**
+	 * This method returns the spatial complexity of search
+	 * @return
+	 * spatial complexity
+	 */
 	public long getSpatialComplexity() {
 		return spatialComplexity;
 	}
-
+	/**
+	 * This method set spatial complexity
+	 * @param i
+	 * number of nodes
+	 */
 	public void setSpatialComplexity(long i) {
 		spatialComplexity = i;
 	}
 
+	/**
+	 * This method can set optimization
+	 * @param b
+	 * boolean value, true if optimization is activated, else false
+	 */
 	public void setOptimization(boolean b) {
 		this.optimization=b;
 	}
