@@ -26,7 +26,6 @@ public class UninformedSearchStrategy {
 		while (nodeSolution.isEmpty() && currentDepth <= depthMax) {
 			this.spatialComplexity=0;
 			nodeSolution = limitedSearch(prob, strategy, currentDepth);
-			System.out.println(nodeSolution.size());
 			this.visited.clear();
 			currentDepth += incDepth;
 		}

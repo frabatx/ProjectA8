@@ -90,11 +90,6 @@ public class testFrontier {
 		out.println(s.toString());
 		out.println();
 
-		System.out.println("Spatial Complexity: " + uniformedAlgorithm.getSpatialComplexity());
-		System.out.println("Spatial Time: " + (finalTime - initialTime) + " ms");
-		System.out.println(s.toString());
-		System.out.println();
-
 		int i = 0;
 		for (Node node : nodeSolution) {
 			out.println("Node n: " + i + " Action: " + node.getAction());
