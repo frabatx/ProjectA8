@@ -13,7 +13,7 @@ public class Action {
 
 	private Position nextPosition;
 	private HashMap<Position, Integer> sandMovement;
-	private int cost=0;
+	public int cost=0;
 	
 	//COSTRUCTOR
 	/**
@@ -45,11 +45,15 @@ public class Action {
 	 * @return
 	 * cost of action
 	 */
-	public int getCost() {
+	public void setCost() {
 		for (Position p : sandMovement.keySet()) {
 			this.cost+=sandMovement.get(p);
 		}
-		return this.cost+1 ;
+		this.cost++;
+	}
+	
+	public int getCost() {
+	    return this.cost;
 	}
 	
 	/**

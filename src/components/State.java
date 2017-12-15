@@ -383,6 +383,7 @@ public class State {
 			i++;
 		    }
 		    if (isIn == true) { // control
+			action.setCost();
 			actions.add(action);
 			// System.out.println(action.toString()); // test to can see all action
 		    }

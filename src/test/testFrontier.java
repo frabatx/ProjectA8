@@ -20,7 +20,7 @@ public class testFrontier {
 
 	public static void main(String[] args) throws Exception {
 
-		State initialState = new State("Test.0.txt");
+		State initialState = new State("Test.1.txt");
 		Problem prob = new Problem(initialState);
 		UninformedSearchStrategy uniformedAlgorithm = new UninformedSearchStrategy();
 		File solutions = new File("Solution.txt");
@@ -37,6 +37,8 @@ public class testFrontier {
 			System.out.println("*4) IDS");
 			System.out.println("*5) UCS");
 			System.out.println("*6) A*");
+			System.out.println("*7) A");
+
 			System.out.println("***********************************");
 			System.out.println("Choose the strategy");
 			String choice = tastiera.next();
@@ -65,6 +67,8 @@ public class testFrontier {
 			case "6":
 				s = Strategy.A;
 				break;
+			case "7":
+			    	s= Strategy.Avariant;
 			default:
 				break;
 			}
@@ -92,7 +96,8 @@ public class testFrontier {
 
 		int i = 0;
 		for (Node node : nodeSolution) {
-			out.println("Node n: " + i + " Action: " + node.getAction());
+			out.println("Node n: " + i + " Action: " + node.getAction()+node.getDepth());
+			out.println("Value: "+node.getValue());
 			int[][] matrix = node.getState().getMatrix();
 			for (int j = 0; j < node.getState().getSizeRow(); j++) {
 				for (int j2 = 0; j2 < node.getState().getSizeCol(); j2++) {
@@ -106,6 +111,7 @@ public class testFrontier {
 			}
 			i++;
 		}
+		System.out.println();
 		nodeSolution.clear();
 		out.close();
 	}

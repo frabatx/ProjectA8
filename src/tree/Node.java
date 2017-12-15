@@ -21,7 +21,7 @@ public class Node implements Comparable<Node>{
 	private State state;
 	private int cost;
 	private int depth;
-	private int value;
+	private double value;
 	private Action action;
 	private Strategy strategy;
 	
@@ -70,6 +70,9 @@ public class Node implements Comparable<Node>{
 			break;
 		case A:
 			value = cost + state.getHeuristic(); 
+			break;
+		case Avariant:
+		    	value = (cost*0.3) + (state.getHeuristic()*0.7);
 		default:
 			break;
 		}
@@ -104,7 +107,7 @@ public class Node implements Comparable<Node>{
 		return depth;
 	}
 
-	public int getValue() {
+	public double getValue() {
 		return value;
 	}
 
@@ -183,7 +186,7 @@ public class Node implements Comparable<Node>{
 	 * @param strategy
 	 * @return
 	 */
-	public Integer getValueHash(Strategy strategy) {
+	public double getValueHash(Strategy strategy) {
 		if(strategy == Strategy.BFS || strategy == Strategy.DFS || strategy == Strategy.DLS || strategy == Strategy.IDS)
 			return cost;
 		else 
@@ -205,7 +208,7 @@ public class Node implements Comparable<Node>{
 
 	@Override
 	public int compareTo(Node n) {
-		return ((Integer) this.value).compareTo((Integer) n.value);
+		return ((Double) this.value).compareTo((Double) n.value);
 	}
 
 	@Override
