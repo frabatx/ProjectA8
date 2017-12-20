@@ -7,5 +7,5 @@ package problem;
  * @author Ezgi Iscioglu 
  */
 public enum Strategy {
-	BFS, DFS, DLS, IDS, UCS, A, Avariant
+	BFS, DFS, DLS, IDS, UCS, A,
 }

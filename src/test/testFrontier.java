@@ -37,7 +37,6 @@ public class testFrontier {
 			System.out.println("*4) IDS");
 			System.out.println("*5) UCS");
 			System.out.println("*6) A*");
-			System.out.println("*7) A");
 
 			System.out.println("***********************************");
 			System.out.println("Choose the strategy");
@@ -67,8 +66,6 @@ public class testFrontier {
 			case "6":
 				s = Strategy.A;
 				break;
-			case "7":
-			    	s= Strategy.Avariant;
 			default:
 				break;
 			}

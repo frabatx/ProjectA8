@@ -71,8 +71,6 @@ public class Node implements Comparable<Node>{
 		case A:
 			value = cost + state.getHeuristic(); 
 			break;
-		case Avariant:
-		    	value = (cost*0.3) + (state.getHeuristic()*0.7);
 		default:
 			break;
 		}
