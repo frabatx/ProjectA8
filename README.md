@@ -1,13 +1,8 @@
-Intelligent Systems 
-
-
-Laboratory Group: A8 
-
+#Artificial intelligence project
+#Class 3
+#Laboratory Group A8 
 Members: 
-
 Francesco Battista 
-
-Daniele Acquaviva 
-
+Acquaviva Daniele
 Ayşe Ezgi İşçioğlu 
 
